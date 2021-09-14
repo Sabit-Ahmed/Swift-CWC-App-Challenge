@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "45950865-6CF4-43C8-9C3A-552A54E69262"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WrapUpChallenge/Views/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - d384b36437184745"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of WrapUpChallenge.ContentView.quote : WrapUpChallenge.QuoteModel"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - 2a954298f5db8f6f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.quote.getter : WrapUpChallenge.QuoteModel"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - 52d53cccd1db35f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.quote.setter : WrapUpChallenge.QuoteModel"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - 2583969e7a27675c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.quote.modify : WrapUpChallenge.QuoteModel"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - eb2e04517a00c36b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.quote.modify : WrapUpChallenge.QuoteModel with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - 549d6e185602296"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.$quote.getter : SwiftUI.ObservedObject&lt;WrapUpChallenge.QuoteModel&gt;.Wrapper"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "F2AC3F7C-62A0-40D5-80D8-E2B3E78554A9 - fa4c29bdaf183b67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.init() -&gt; WrapUpChallenge.ContentView"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E142EA1B-C1ED-4354-A178-66F418ECC53F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WrapUpChallenge/Views/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "E142EA1B-C1ED-4354-A178-66F418ECC53F - 1e3022c3ed1becfc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WrapUpChallenge.ContentView.body.getter : some"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  uuid = "E142EA1B-C1ED-4354-A178-66F418ECC53F - da71b30bf7a474c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (WrapUpChallenge.FamousQuotes) -&gt; WrapUpChallenge.QuoteListView in WrapUpChallenge.ContentView.body.getter : some"
+                  moduleName = "WrapUpChallenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sabit/Desktop/Sabit/CWC/iOS%20Foundations%20(SwiftUI)/WrapUpChallenge/WrapUpChallenge/Views/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D7E2ECD-C6D1-4AB6-B296-9129D72B093E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WrapUpChallenge/Services/DataServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getLocalData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B17207F6-548A-4791-946A-CE05DFE17AC7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WrapUpChallenge/Services/DataServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "getLocalData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B079E885-508E-49F9-8A25-39759467B787"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WrapUpChallenge/Services/DataServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getLocalData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36BB9B30-28FE-48E8-B01F-880327D79003"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WrapUpChallenge/Services/DataServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getLocalData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
