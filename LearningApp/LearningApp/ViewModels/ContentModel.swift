@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Firebase
 
 class ContentModel: ObservableObject {
+    let db = Firestore.firestore()
     // List of modules
     @Published var modules = [Module]()
     
@@ -37,10 +39,17 @@ class ContentModel: ObservableObject {
     
     init() {
         // Get the local data
-        getLocalData()
+//        getLocalData()
         
         // Get the remote data
-        getRemoteData()
+//        getRemoteData()
+        
+        // Parse local style.html
+        getLocalStyles()
+        
+        // Get documents from firebase
+        getDatabaseModules()
+        
     }
     
     // MARK: - Data methods
@@ -129,9 +138,72 @@ class ContentModel: ObservableObject {
         dataTask.resume()
     }
     
+    func getLocalStyles() {
+        // Parse the style data
+        let styleUrl = Bundle.main.url(forResource: "style", withExtension: "html")
+        do {
+            // Read the style file into data object
+            let styleData = try Data(contentsOf: styleUrl!)
+            self.styleData = styleData
+        }
+        catch {
+            print("Couldn't parse the style data")
+        }
+    }
+    
+    func getDatabaseModules() {
+        
+        // Specify path
+        let collection = db.collection("modules")
+        
+        // Get documents
+        collection.getDocuments { snapshot, error in
+            if error == nil && snapshot != nil {
+                
+                // Create an array of modules
+                var modules = [Module]()
+                
+                for doc in snapshot!.documents {
+                    
+                    // Create an instance of module
+                    var m = Module()
+                    
+                    // Parse the values fro the documents into module instance
+                    m.id = doc["id"] as? String ?? UUID().uuidString
+                    m.category = doc["category"] as? String ?? ""
+                    
+                    // Parse the lesson content
+                    let contenMap = doc["content"] as! [String: Any]
+                    
+                    m.content.id = contenMap["id"] as? String ?? ""
+                    m.content.description = contenMap["description"] as? String ?? ""
+                    m.content.image = contenMap["image"] as? String ?? ""
+                    m.content.time = contenMap["time"] as? String ?? ""
+                    
+                    // Parse the test content
+                    
+                    let testMap = doc["test"] as! [String: Any]
+                    
+                    m.test.id = testMap["id"] as? String ?? ""
+                    m.test.description = testMap["description"] as? String ?? ""
+                    m.test.image = testMap["image"] as? String ?? ""
+                    m.test.time = testMap["time"] as? String ?? ""
+                    
+                    // Add it to our array
+                    modules.append(m)
+                }
+                
+                // Assign our modules to the published property
+                DispatchQueue.main.async {
+                    self.modules = modules
+                }
+            }
+        }
+    }
+    
     // MARK: - Module navigation methods
     
-    func beginModule(_ moduleId:Int) {
+    func beginModule(_ moduleId:String) {
         // Find the index for the module id
         for index in 0..<modules.count {
             if moduleId == modules[index].id {
@@ -178,7 +250,7 @@ class ContentModel: ObservableObject {
         }
     }
     
-    func beginTest(_ moduleId:Int) {
+    func beginTest(_ moduleId:String) {
         
         // Set the current module
         beginModule(moduleId)
