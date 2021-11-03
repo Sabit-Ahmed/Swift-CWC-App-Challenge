@@ -48,7 +48,7 @@ class ContentModel: ObservableObject {
         getLocalStyles()
         
         // Get documents from firebase
-        getDatabaseModules()
+        getModules()
         
     }
     
@@ -151,7 +151,7 @@ class ContentModel: ObservableObject {
         }
     }
     
-    func getDatabaseModules() {
+    func getModules() {
         
         // Specify path
         let collection = db.collection("modules")
@@ -196,6 +196,93 @@ class ContentModel: ObservableObject {
                 // Assign our modules to the published property
                 DispatchQueue.main.async {
                     self.modules = modules
+                }
+            }
+        }
+    }
+    
+    func getLessons(module: Module, completion: @escaping () -> Void) {
+        // Specify path
+        let collection = db.collection("modules").document(module.id).collection("lessons")
+        
+        // Get documents
+        collection.getDocuments { snapshot, error in
+            
+            if error == nil && snapshot != nil {
+                
+                // Array to track the lessons
+                var lessons = [Lesson]()
+                
+                // Loop through the documents and build array of lessons
+                for doc in snapshot!.documents {
+                    // New lesson
+                    var l = Lesson()
+                    
+                    l.id = doc["id"] as? String ?? UUID().uuidString
+                    l.title = doc["title"] as? String ?? ""
+                    l.video = doc["video"] as? String ?? ""
+                    l.duration = doc["duration"] as? String ?? ""
+                    l.explanation = doc["explanation"] as? String ?? ""
+                    
+                    // Add the lessons in the array
+                    lessons.append(l)
+                }
+                
+                // Set the lessons in module
+                for (index, m) in self.modules.enumerated() {
+                    
+                    // Find the module we want
+                    if m.id == module.id {
+                        
+                        // Set the lessons
+                        self.modules[index].content.lessons = lessons
+                        
+                        // Call the completion closure
+                        completion()
+                    }
+                }
+            }
+        }
+    }
+    
+    func getQuestions(module: Module, completion: @escaping () -> Void) {
+        // Specify path
+        let collection = db.collection("modules").document(module.id).collection("questions")
+        
+        // Get documents
+        collection.getDocuments { snapshot, error in
+            
+            if error == nil && snapshot != nil {
+                
+                // Array to track the lessons
+                var questions = [Question]()
+                
+                // Loop through the documents and build array of lessons
+                for doc in snapshot!.documents {
+                    // New lesson
+                    var q = Question()
+                    
+                    q.id = doc["id"] as? String ?? UUID().uuidString
+                    q.content = doc["content"] as? String ?? ""
+                    q.answers = doc["answers"] as? [String] ?? ["true"]
+                    q.correctIndex = doc["correctIndex"] as? Int ?? 0
+                    
+                    // Add the lessons in the array
+                    questions.append(q)
+                }
+                
+                // Set the lessons in module
+                for (index, m) in self.modules.enumerated() {
+                    
+                    // Find the module we want
+                    if m.id == module.id {
+                        
+                        // Set the lessons
+                        self.modules[index].test.questions = questions
+                        
+                        // Call the completion closure
+                        completion()
+                    }
                 }
             }
         }
