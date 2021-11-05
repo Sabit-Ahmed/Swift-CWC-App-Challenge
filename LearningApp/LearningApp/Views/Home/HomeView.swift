@@ -10,12 +10,32 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var model: ContentModel
     
+    let user = UserService.shared.user
+    
+    var navTitle: String {
+        if user.lastLesson != nil || user.lastQuestion != nil {
+            return "Welcome Back!"
+        }
+        else {
+            return "Get Started"
+        }
+    }
+    
     var body: some View {
         
         NavigationView {
             VStack (alignment: .leading) {
-                Text("What do you want to learn today?")
-                    .padding(.leading, 20)
+                
+                if (user.lastLesson != nil && user.lastLesson! > 0) || (user.lastQuestion != nil && user.lastQuestion! > 0) {
+                    
+                    // Show the resume view
+                    ResumeView()
+                        .padding(.horizontal)
+                }
+                else {
+                    Text("What do you want to learn today?")
+                        .padding(.leading, 20)
+                }
                 
                 ScrollView {
                     LazyVStack {
@@ -69,7 +89,7 @@ struct HomeView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Get Started")
+            .navigationTitle(navTitle)
             .onChange(of: model.currentContentSelected, perform: { changedValue in
                 if changedValue == nil {
                     model.currentModule = nil

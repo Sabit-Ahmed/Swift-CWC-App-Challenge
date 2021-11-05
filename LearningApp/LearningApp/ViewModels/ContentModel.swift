@@ -285,6 +285,9 @@ class ContentModel: ObservableObject {
     }
     
     func beginLesson(_ lessonIndex: Int) {
+        // Reset the question index as user is starting lesson
+        currentQuestionIndex = 0
+        
      
         // Check if the lesson index is in range
         if lessonIndex < currentModule!.content.lessons.count {
@@ -327,6 +330,9 @@ class ContentModel: ObservableObject {
         beginModule(moduleId)
         
         currentQuestionIndex = 0
+        
+        // Reset the lesson index as user is starting test
+        currentLessonIndex = 0
         
         // Set the current question
         if currentModule?.test.questions.count ?? 0 > 0 {
