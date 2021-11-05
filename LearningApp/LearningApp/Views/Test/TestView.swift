@@ -91,10 +91,15 @@ struct TestView: View {
                     if submitted == true {
                         
                         if model.currentQuestionIndex + 1 == model.currentModule?.test.questions.count {
+                            
+                            // Check next question and save progress
+                            model.nextQuestion()
+                            
                             showResults = true
                         }
                         else {
                             // If the answer is already submitted, go to the next question
+                            // Also save progress
                             model.nextQuestion()
                             
                             // Reset Properties

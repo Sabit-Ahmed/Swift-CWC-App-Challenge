@@ -43,9 +43,15 @@ struct ContentDetailView: View {
                 })
             }
             else {
+                
                 Button(action: {
+                    
+                    // Call next lesson
+                    model.nextLesson()
+                    
                     // Advance to the home View after completion
                     model.currentContentSelected = nil
+                    
                 }, label: {
                     
                     ZStack {

@@ -7,9 +7,15 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class ContentModel: ObservableObject {
+    
     let db = Firestore.firestore()
+    
+    // Authentication
+    @Published var loggedIn = false
+    
     // List of modules
     @Published var modules = [Module]()
     
@@ -38,105 +44,25 @@ class ContentModel: ObservableObject {
     var styleData: Data?
     
     init() {
-        // Get the local data
-//        getLocalData()
-        
-        // Get the remote data
-//        getRemoteData()
-        
-        // Parse local style.html
-        getLocalStyles()
-        
-        // Get documents from firebase
-        getModules()
+         
         
     }
+    
+    // MARK: - Authentication methods
+    
+    func checkLogin() {
+        
+        // Check if there's a current user to determine logged in or not
+        loggedIn = Auth.auth().currentUser != nil ? true : false
+        
+        if UserService.shared.user.name == "" {
+            getUserData()
+        }
+        
+    }
+    
     
     // MARK: - Data methods
-    
-    func getLocalData() {
-        // Get a url to the json file
-        let jsonUrl = Bundle.main.url(forResource: "data", withExtension: "json")
-        
-        do {
-            // Read the file into data object
-            let jsonData = try Data(contentsOf: jsonUrl!)
-            
-            // Try to decode the json object into an array of modules
-            let jsonDecoder = JSONDecoder()
-            let modules = try jsonDecoder.decode([Module].self, from: jsonData)
-            
-            // Assign parsed modules to modules property
-            self.modules = modules
-        }
-        catch {
-            // TODO log error
-            print("Couldn't parse the loacl data")
-        }
-        
-        // Parse the style data
-        let styleUrl = Bundle.main.url(forResource: "style", withExtension: "html")
-        do {
-            // Read the style file into data object
-            let styleData = try Data(contentsOf: styleUrl!)
-            self.styleData = styleData
-        }
-        catch {
-            print("Couldn't parse the style data")
-        }
-    }
-    
-    func getRemoteData() {
-        
-        let urlString = "https://sabit-ahmed.github.io/learningapp-data/data2.json"
-        
-        // Create url object
-        let url = URL(string: urlString)
-        
-        guard url != nil else {
-            // Handle if the url can't be created
-            return
-        }
-        
-        // Create url request object
-        let request = URLRequest(url: url!)
-        
-        // Get the session and kick-off task
-        let session = URLSession.shared
-        
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            
-            // Check if there is any error
-            guard error == nil else {
-                // There is error
-                return
-            }
-            
-            // Operate on the fetched data
-            do {
-                // Create a json decoder object
-                let jsonDecoder = JSONDecoder()
-                
-                // Decode json
-                let modules = try jsonDecoder.decode([Module].self, from: data!)
-                
-                // Update view code in the main thread using async
-                DispatchQueue.main.async {
-                    // Append the p[arsed data into modules array
-                    self.modules += modules
-                }
-                
-            }
-            catch {
-                // Couldn't parse the json data
-                print("Couldn't parse the remote data")
-            }
-            
-        }
-        
-        // Kick off the task
-        dataTask.resume()
-    }
     
     func getLocalStyles() {
         // Parse the style data
@@ -152,6 +78,9 @@ class ContentModel: ObservableObject {
     }
     
     func getModules() {
+        
+        // Parse local style.html
+        getLocalStyles()
         
         // Specify path
         let collection = db.collection("modules")
@@ -288,6 +217,58 @@ class ContentModel: ObservableObject {
         }
     }
     
+    func getUserData() {
+        
+        // Check if there is a logged in user
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        
+        // Get the meta data for that user
+        let db = Firestore.firestore()
+        let ref = db.collection("users").document(Auth.auth().currentUser!.uid)
+        ref.getDocument { snapshot, error in
+            
+            // Check if any error
+            guard error == nil, snapshot != nil else {
+                return
+            }
+            
+            // Parse the data out ans set the user meta data
+            let data = snapshot!.data()
+            let user = UserService.shared.user
+            user.name = data!["name"] as? String ?? ""
+            user.lastLesson = data!["lastLesson"] as? Int
+            user.lastModule = data!["lastModule"] as? Int
+            user.lastQuestion = data!["lastQuestion"] as? Int
+        }
+    }
+    
+    func saveData(writeToDatabase: Bool = false) {
+        
+        if let loggedInUser = Auth.auth().currentUser {
+            
+            // Save the progress data locally
+            let user = UserService.shared.user
+            user.lastModule = currentModuleIndex
+            user.lastLesson = currentLessonIndex
+            user.lastQuestion = currentQuestionIndex
+            
+            if writeToDatabase {
+                // Save it to the database
+                let db = Firestore.firestore()
+                let ref = db.collection("users").document(loggedInUser.uid)
+                ref.setData(["lastModule": user.lastModule ?? NSNull(),
+                             "lastLesson": user.lastLesson ?? NSNull(),
+                             "lastQuestion": user.lastQuestion ?? NSNull()], merge: true)
+            }
+            
+            
+        }
+        
+    }
+    
+    
     // MARK: - Module navigation methods
     
     func beginModule(_ moduleId:String) {
@@ -335,6 +316,9 @@ class ContentModel: ObservableObject {
             currentLessonIndex = 0
             currentLesson = nil
         }
+        
+        // Save the progress
+        saveData()
     }
     
     func beginTest(_ moduleId:String) {
@@ -362,6 +346,9 @@ class ContentModel: ObservableObject {
             currentQuestionIndex = 0
             currentQuestion = nil
         }
+        
+        // Save the progress
+        saveData()
     }
     
     // MARK: - Code styling helper
